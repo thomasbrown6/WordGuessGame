@@ -71,7 +71,13 @@ function startGame() {
 	// Fill up the blanksAndSuccesses list with appropriate number of blanks.
 	// This is based on number of letters in solution.
 	for (var i = 0; i < numBlanks; i++) {
-		blanksAndSuccesses.push("_");
+		blanksAndSuccesses.push(" _ ");
+
+		console.log(chosenWord[i]);
+
+			if(chosenWord[i].keyCode == 32){		
+				chosenWord[i].push(" space ");
+			}
 
 	}
 
@@ -105,6 +111,7 @@ function checkLetters(letter) {
 			// If the letter the user chooses exists then set the boolean to true.
 			letterInWord = true;
 		}
+
 	}
 
 	// If the letter exists somewhere in the word, then figure out where.
@@ -165,7 +172,7 @@ function roundComplete() {
 		// Add to the loss counter
 		lossCounter++;
 		// Give the user an alert.
-		alert("You Lose");
+		alert("You Lose, the answer was " + chosenWord);
 
 		// Update the loss counter in the HTML.
 		document.getElementById("loss-counter").innerHTML = lossCounter;
