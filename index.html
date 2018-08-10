@@ -1,89 +1,96 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<title>NBA Hangman Game</title>
-	<!-- Reset link -->
-	<link rel="stylesheet" href="assets/css/reset.css">
-	<!-- Bootstrap link -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<!-- Style link -->
-	<link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>NBA Hangman</title>
 
+	<!-- Bootsrap Reference -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<!-- Style.css -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
-
 <body>
-
-	<!-- Bootstrap Container holds everything -->
 	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<h1>Hangman</h1>
+		<!-- Header -->
+		<div class="row heading-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<h1> Hangman </h1>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<br>
+		<!-- Main Game Function -->
+		<div class="row body-row">
+			<div class="col-md-2"></div>
+			<div class="col-md-5">
+				<div class="row">
+					<!-- Image Space in Play Area -->
+					<div class="col-md-12">
+						<p>Round: <span id="round-counter"></span></p>
+						<p>Score: <span id="score-counter"></span></p>
+						<p>Guesses Left: <span id="guess-counter"></span></p>
+						<br>
+						
+						
+					</div>
+					
+										
+
+				</div>
+			</div>
+
+			<div class="col-md-5">
+				<p><span id="blank-word"></span></p>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-12">
 
+		<!-- Buttons for guess -->
+		<div class="row button-row">
+			<div class="col-md-12" id="alpha-grid">
+				<input type="image" class="vanish-butn alpha" src="assets/images/a.png" value="A" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/b.png" value="B" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/c.png" value="C" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/d.png" value="D" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/e.png" value="E" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/f.png" value="F" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/g.png" value="G" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/h.png" value="H" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/i.png" value="I" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/j.png" value="J" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/k.png" value="K" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/l.png" value="L" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/m.png" value="M" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/n.png" value="N" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/o.png" value="O" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/p.png" value="P" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/q.png" value="Q" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/r.png" value="R" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/s.png" value="S" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/t.png" value="T" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/u.png" value="U" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/v.png" value="V" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/w.png" value="W" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/x.png" value="X" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/y.png" value="Y" onclick="userClick(this)">
+				<input type="image" class="vanish-butn alpha" src="assets/images/z.png" value="Z" onclick="userClick(this)"> 
 			</div>
-		</div>
-
-		<!-- Game counters all held here. cards are being used to hold various sections. -->
-		<div class="row">
-			<div id="left-column" class="col-lg-5">
-				<div class="row">
-					<!-- This span called winCounter is where we'll be dumping the number of wins.
-							Pay attention to the id called ****winCounter***. We'll be referencing this in the JavaScript. -->
-					<strong id="winning-column" >Wins:  </strong>
-					<span id="win-counter"> 0</span>
-				</div>
-				<div class="row">
-					<!-- This span called winCounter is where we'll be dumping the number of wins.
-							Pay attention to the id called ****winCounter***. We'll be referencing this in the JavaScript. -->
-					<strong id="losing-column" >Losses:  </strong>
-					<span id="loss-counter"> 0</span>
-				</div>
-			</div>
-
-			<div class="col-lg-1"></div>
-
-			<div id="right-column" class="col-lg-6">
-
-				<h3>
-					<strong>Word to Guess</strong>
-				</h3>
-
-				<!-- This h3 section called wordblanks is what we'll be replacing with letters as the user guesses.
-						Pay particular attention to the id called ***wordblanks***. We'll be referencing this in the JavaScript. -->
-				<h4 id="word-blanks">_ _ _ _ _ _ _ _ _ </h4>
-
-
-
-
-				<!-- This span section called userGuesses is where we will be dumping the wrong guesses.
-						Pay particular attention to the id called ****userGuesses***. We'll be referencing this in the JavaScript. -->
-				<strong>Wrong Guesses: </strong>
-				<span id="wrong-guesses"></span>
-
-
-				
-
-				<!-- This span called guessesLeft is where we will be dumping the number of guesses left.
-						Pay attention to the id called ****guessesLeft****. We'll be referencing this in the JavaScript. -->
-				<strong>Guesses Left: </strong>
-				<span id="guesses-left">15</span>
-
-			</div>
-			
-
-
-
 		</div>
 	</div>
-	<!-- Adds a link to the javascript file. Loaded at the bottom so it waits for the HTML content to display first.
-	If you put this at the top it will crash, because the HTML IDs won't exist yet.-->
-	<script src="assets/javascript/game.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="assets/javascript/game.js"></script>
+
 </body>
 
 </html>
+
+
+
+
+
+				
